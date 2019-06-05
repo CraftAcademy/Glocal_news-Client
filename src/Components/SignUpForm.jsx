@@ -29,7 +29,7 @@ class SignUpForm extends Component {
     registerUser({ email, password, password_confirmation })
       .then(response => {
         this.setState({ message: true })
-        setTimeout(function () { history.push('/') }, 3000)
+        setTimeout(function () { history.push('/') }, 1000)
       }).catch(error => {
         this.setState({
           errors_signup: error.response.data.errors.full_messages,
@@ -48,7 +48,7 @@ class SignUpForm extends Component {
         <>
           <br />
           <Message color="green">
-            <p>You have succesfully signed up. Wait to be redirected to the main page.</p>
+            <p>You have succesfully signed up.</p>
           </Message>
         </>
       )

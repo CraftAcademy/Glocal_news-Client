@@ -36,6 +36,7 @@ describe('Visitor can', () => {
       cy.get('#password').type('password')
     })
     cy.get('#login_form_button').click()
+    cy.wait(3000)
     cy.get('#review_articles').click()
     cy.get("#1").click()
   })

@@ -31,6 +31,6 @@ describe('Visitor can view on the landing page', () => {
       status: 200
     })
     cy.visit('http://localhost:3001')
-    cy.contains('There are no articles at the moment. You can be the first to post your own article and become a neighborhood journalist!')
+    cy.contains('Be the first to post your own article and become a neighborhood journalist!')
   })
 })

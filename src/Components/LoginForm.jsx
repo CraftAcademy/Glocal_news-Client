@@ -27,7 +27,7 @@ class LoginForm extends Component {
     signInUser({ email, password })
       .then(response => {
         this.setState({ message: true })
-        setTimeout(function () { history.push('/') }, 3000)
+        setTimeout(function () { history.push('/') }, 1000)
       }).catch(error => {
         this.setState({
           errorsLogin: error.response.data.errors[0],
@@ -46,7 +46,7 @@ class LoginForm extends Component {
         <>
           <br />
           <Message color="green">
-            <p>You have succesfully logged in. Wait to be redirected to the main page.</p>
+            <p>You have succesfully logged in.</p>
           </Message>
         </>
       )

@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import HeaderCategory from './HeaderCategory';
-import { Menu, Header, Select, Container, Divider, Segment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import HeaderCategory from './HeaderCategory'
+import { Menu, Header, Select, Container, Divider, Segment } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { signOutUser } from '../reduxTokenAuthConfig';
 import { withRouter } from 'react-router-dom';
 
-
 class HeaderMain extends Component {
+  state = {
+    activeItem: 'news',
+  }
+
+  handleItemClick = (e) => {
+    const category = e.target.id[0].toLowerCase() + e.target.id.slice(1);
+    this.setState({ activeItem: category })
+  }
 
   signOut = (e) => {
     e.preventDefault()
@@ -97,12 +104,16 @@ class HeaderMain extends Component {
 
     return (
       <>
-        <Container textAlign="center">
+        <Container id="header" textAlign="center">
           <Divider hidden />
           <Header
+            id='news'
+            name='logo'
             as={Link}
-            to='/'
-            style={{ fontSize: "2em" }}>
+            to={{ pathname: '/news', state: { activeItem: this.state.activeItem } }}
+            style={{ fontSize: "2em" }}
+            onClick={this.handleItemClick}
+          >
             GLOCAL NEWS
           </Header>
           <Divider hidden />
@@ -110,7 +121,8 @@ class HeaderMain extends Component {
 
         <Container>
           <Segment inverted
-            style={{ background: '#e0e1e2' }} >
+            style={{ background: '#e0e1e2' }}
+          >
             <Menu secondary>
               <Select
                 style={{ border: 'none', margin: '2px' }}
@@ -143,7 +155,8 @@ class HeaderMain extends Component {
         </Container>
 
         <Container>
-          <HeaderCategory />
+          <HeaderCategory
+            handleItemClick={this.handleItemClick} activeItem={this.state.activeItem} />
         </Container>
       </>
     )

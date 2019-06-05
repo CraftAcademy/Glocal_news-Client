@@ -1,5 +1,12 @@
 describe('Visitor can navigate the website', () => {
   beforeEach(function () {
+    cy.server()
+    cy.route({
+      method: 'GET',
+      url: 'http://localhost:3002/api/v1/categories',
+      response: 'fixture:categories_list.json',
+      status: 200
+    })    
     cy.visit('http://localhost:3001');
   })
 

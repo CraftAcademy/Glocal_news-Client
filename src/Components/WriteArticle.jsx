@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Container, Button, Message, Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
-import { COUNTRY_OPTIONS } from '../Modules/countriesData.js'
+import { COUNTRY_OPTIONS } from '../Modules/countriesData'
+import { getCategories } from '../Modules/categoriesData'
 
 class WriteArticle extends Component {
   state = {
@@ -20,10 +21,9 @@ class WriteArticle extends Component {
     error_message: false
   }
 
-  componentDidMount() {
-    axios.get('/api/v1/categories').then(response => {
-      this.setState({ categories: response.data });
-    });
+  async componentDidMount() {
+    let categories = await getCategories()
+    this.setState({ categories: categories });
   }
 
   onChangeHandler = (e) => {
@@ -38,9 +38,10 @@ class WriteArticle extends Component {
     const payload = { ...this.state }
     axios.post(path, payload)
       .then(response => {
+        console.log(response)
         this.props.history.push({
-          pathname: `/full-article/${response.data.article_id}`,
-          state: { success_message: true, review_form: false }
+          pathname: '/full-article',
+          state: { success_message: true, review_form: false, id: response.data.article_id }
         })
 
       })

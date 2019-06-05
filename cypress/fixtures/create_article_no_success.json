@@ -2,10 +2,9 @@
   "status": 422,
   "headers": {},
   "error": [
-    "Body can't be blank",
     "Category must exist",
     "Category can't be blank",
     "Country can't be blank",
-    "City can't be blank"
+    "Body is too short (minimum is 1000 characters)"
   ]
 }
