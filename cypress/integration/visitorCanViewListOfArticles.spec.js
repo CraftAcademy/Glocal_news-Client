@@ -1,6 +1,6 @@
 describe('Visitor can view on the landing page', () => {
 
-  it('a list of articles successfully', () => {
+  it('a list of articles that are published successfully', () => {
     cy.server();
     cy.route({
       method: 'GET',
@@ -11,8 +11,6 @@ describe('Visitor can view on the landing page', () => {
     cy.visit('http://localhost:3001')
 
     let articles = [
-      ["#36", "#title_36", "#ingress_36", "#photo_36"],
-      ["#37", "#title_37", "#ingress_37", "#photo_37"],
       ["#38", "#title_38", "#ingress_38", "#photo_38"]
     ]
 
