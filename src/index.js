@@ -26,3 +26,5 @@ ReactDOM.render((
 ), document.getElementById('root'));
 
 serviceWorker.unregister();
+
+// 'https://glocal-news.herokuapp.com'
